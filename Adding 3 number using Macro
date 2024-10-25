@@ -1,0 +1,30 @@
+;ex1
+;using macro
+;macro
+
+.model  small
+.stack 100h
+.data
+var1 dw 1    ; Declearing numbers
+var2 dw 1
+var3 dw 2
+nextlinne db 0Dh, 0Ah,'$'
+.code
+display macro var1,var2,var3
+    mov ax,var1  ;moving numbers to register ax
+    add ax,var2  ;add 4 number in the reister
+    add ax,var3  ;add 3 number in the reister
+    
+    mov dx, ax   ; for the display
+    add dx,48    ; ASCII
+    mov ah,2     ; For display the result
+    int 21h
+endm      
+
+     main proc
+        mov ax,@data
+        mov ds, ax                 ;using ax
+        display var1, var2,var3    ;calling macro
+        
+         main endp
+end main
