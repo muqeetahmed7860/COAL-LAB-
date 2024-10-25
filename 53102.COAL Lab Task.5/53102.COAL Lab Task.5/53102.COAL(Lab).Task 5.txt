@@ -1,0 +1,40 @@
+.model small
+.stack 100h
+
+.data
+    
+
+.code
+main proc
+    
+    mov ax, @data
+    mov ds, ax
+
+    ; Step 1: Load three numbers into registers
+    mov bp, 5      ; First number 5 in bp
+    mov si, 10     ; Second number 10 in si
+    mov dx, 15     ; Third number 15 in dx 
+
+    ; Step 2: Push the numbers onto the stack
+    push bp        ; Push first number 5
+    push si        ; Push second number 10
+    push dx        ; Push third number 15
+
+    ; Step 3: Pop the numbers from the stack and add them
+    pop dx         ; Pop the third number 15 into dx
+    pop si         ; Pop the second number 10 into si
+    pop bp         ; Pop the first number 5 into bp
+
+    ; Add the three numbers
+    add bp, si     ; Add bp 5 and si 10, result in bp 15
+    add bp, dx     ; Add bp 15 and dx 15, result in bp 30
+
+    ; Step 4: Push the result onto the stack
+    push bp        ; Push the result 30 onto the stack
+
+   
+    mov ah, 4Ch    
+    int 21h
+
+main endp
+end main
